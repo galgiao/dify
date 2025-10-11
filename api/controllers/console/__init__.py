@@ -19,16 +19,7 @@ from .explore.message import (
     MessageMoreLikeThisApi,
     MessageSuggestedQuestionApi,
 )
-from .explore.trial import (
-    AppApi,
-    TrialAppParameterApi,
-    TrialChatApi,
-    TrialChatAudioApi,
-    TrialChatTextApi,
-    TrialCompletionApi,
-    TrialMessageSuggestedQuestionApi,
-    TrialSitApi,
-)
+
 from .explore.workflow import (
     InstalledAppWorkflowRunApi,
     InstalledAppWorkflowTaskStopApi,
@@ -232,27 +223,6 @@ api.add_resource(InstalledAppWorkflowRunApi, "/installed-apps/<uuid:installed_ap
 api.add_resource(
     InstalledAppWorkflowTaskStopApi, "/installed-apps/<uuid:installed_app_id>/workflows/tasks/<string:task_id>/stop"
 )
-
-# Explore trial
-api.add_resource(TrialChatApi, "/trial-apps/<uuid:app_id>/chat-messages", endpoint="trial_app_chat_completion")
-
-api.add_resource(
-    TrialMessageSuggestedQuestionApi,
-    "/trial-apps/<uuid:app_id>/messages/<uuid:message_id>/suggested-questions",
-    endpoint="trial_app_suggested_question",
-)
-
-api.add_resource(TrialChatAudioApi, "/trial-apps/<uuid:app_id>/audio-to-text", endpoint="trial_app_audio")
-api.add_resource(TrialChatTextApi, "/trial-apps/<uuid:app_id>/text-to-audio", endpoint="trial_app_text")
-
-api.add_resource(TrialCompletionApi, "/trial-apps/<uuid:app_id>/completion-messages", endpoint="trial_app_completion")
-
-api.add_resource(TrialSitApi, "/trial-apps/<uuid:app_id>/site")
-
-api.add_resource(TrialAppParameterApi, "/trial-apps/<uuid:app_id>/parameters", endpoint="trial_app_parameters")
-
-api.add_resource(AppApi, "/trial-apps/<uuid:app_id>", endpoint="trial_app")
-
 api.add_namespace(console_ns)
 
 __all__ = [
